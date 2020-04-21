@@ -1,0 +1,20 @@
+node  {
+
+    stage ('SCM'){
+        //git clone
+        git 'https://github.com/openmrs/openmrs-core.git'
+    }
+
+    stage ('build the packages'){
+        //mvn package
+        //sh 'mvn package'
+        sh label: '', script: '''mvn package'''
+    }
+
+    //stage ('archieval'){
+        //archieving artifacts
+        //archive 'targets/*jar'   
+        archiveArtifacts 'target/*.jar'
+
+    }
+}
